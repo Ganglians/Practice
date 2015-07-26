@@ -8,7 +8,7 @@ using namespace std;
 void print(int **Mx, int M, int N) {
     for(int i = 0; i < M; i ++) {
         for(int j = 0; j < N; j++) {
-            cout << Mx[i][j] << " ";
+            cout << Mx[i][j] << "   ";
         }
         cout << endl;
     }
@@ -56,12 +56,16 @@ void zeros(int **Mx, int M, int N) {
 
 int main(int argc, char *argv[]) {
     int **Mx, M = 5, N = 4;
-    mInit(Mx, M, N);
-    int tmp = 1;
+     Mx = new int*[M];
+     for(int i = 0; i < M; i++) {
+        Mx[i] = new int[N];
+     }
+
+    int tmp = 10;
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             Mx[i][j] = tmp;
-            ++tmp;
+            tmp++;
         }
     }
     Mx[0][1] = 0;
