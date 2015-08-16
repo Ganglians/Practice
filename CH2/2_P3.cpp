@@ -1,7 +1,6 @@
 /* Coder: Juan Chavez
- * Date:  7.28.2015
- * Objective: Get practice before answering the interview questions. 
- * Making an easy to use linked list class to futher my understanding.
+ * Date:  8.2.2015
+ * Objective: Make it so linked list from 2_P1 doesn't use a length var.
  */
 
 #include <iostream>
@@ -15,15 +14,14 @@ class lList {
         node *prev, *next;
     };
     node *head, *tail;
-    int length;
 
     public:
     lList() {
-        length = 0;
+        head = NULL;
     }
 
     void add(T d) {
-        if(length == 0) {
+        if(head == NULL) {
             head = new node;
             head->dat = d;
             head->prev = NULL;
@@ -38,7 +36,6 @@ class lList {
             tail->prev = p;
             tail->dat = d;
         }
-        length++;
     }
 
     node *find(T f) {
@@ -57,9 +54,9 @@ class lList {
         if(found != NULL) {
             //Different removal cases.
             //Case1: Removing the head.
-            if(length == 1) {
+            if(found->prev == NULL) {
+                head = head->next;
                 free(found);
-                length--;
                 return;
             }
             //Case2: Removing out of 2 or more.
@@ -72,7 +69,6 @@ class lList {
                     head = head->next;
                     head->prev = NULL;
                     free(tmp);
-                    length--;
                     return;
                 }
                 //CaseB: Removing the tail.
@@ -81,7 +77,6 @@ class lList {
                     tail = tail->prev;
                     tail->next = NULL;
                     free(tmp);
-                    length--;
                     return;
                 }
                 //CaseC: Removing from in between
@@ -91,7 +86,6 @@ class lList {
                     p->next = n;
                     p->prev = p;
                     free(found);
-                    length--;
                     return;
                 }
             }
