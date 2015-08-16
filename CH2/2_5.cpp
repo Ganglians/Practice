@@ -128,9 +128,9 @@ struct lList {
         node *p1 = tail, *p2 = a.tail;
         int c = 0;
         //Loop while native has digits
-        while(p1 != NULL && P2 != NULL) {
+        while(p1 != NULL && p2 != NULL) {
             //Add a's digit to native
-            p1->digit += p1->digit + c;
+            p1->digit += p2->digit + c;
             c = 0;
             while(p1->digit > 9) {
                 p1->digit = p1->digit % 10;
@@ -150,7 +150,7 @@ struct lList {
                 p1->digit = p1->digit % 10;
                 c++;
             }
-            p2 = p2->next;
+            p2 = p2->prev;
         }
         //If carry lasted until the end
         if(c != 0) {
@@ -175,17 +175,17 @@ struct lList {
 
 int main(int argc, char *argv[]) {
     lList l1;
-    l1.addRev(9);
-    l1.addRev(9);
+    l1.addFwd(9);
+    l1.addFwd(9);
     //l1.addRev(7);
     l1.print();
     cout << "+\n";
     lList l2;
-    l2.addRev(1);
+    l2.addFwd(1);
     //l2.addRev(9);
     //l2.addRev(3);
     l2.print();
-    l1.sumRev(l2);
+    l1.sumFwd(l2);
     cout << "=\n";
     l1.print();
     return 0;
