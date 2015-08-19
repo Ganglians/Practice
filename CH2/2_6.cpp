@@ -33,9 +33,10 @@ void add(node *&t, char d) {
 node *loopStart(node *h);
 
 int main(int argc, char *argv[]) {
-    node *h = new node, *t = h;
+    node *h, *t = NULL;
     //Adding 'A, B, C, D, E' to list
     add(t, 'A');
+    h = t;
     add(t, 'B');
     add(t, 'C');
     //Point to where loop will be made
@@ -55,15 +56,15 @@ node *loopStart(node *h) {
     node *f = h, *s = h;
     bool first = true, loop = false;
     while(f->next) {
-        //Case1: Both pointing at head
-        if(s == f && first) {
-            first = false;
-        }
         //Case2: First true collision
         if(s == f && !first) {
             //Collision detection, leave loop
             loop = true;
             break;
+        }
+        //Case1: Both pointing at head
+        if(s == f && first) {
+            first = false;
         }
         s = s->next;
         f = f->next->next;
